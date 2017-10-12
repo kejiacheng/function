@@ -1,7 +1,7 @@
 /*
 	监听变量变化过程并取特定值
 
-	listen函数：初始化需监听的变量 params(1.变量名称 2.变量初始值)
+	listen函数：初始化需监听的变量 params(1.变量名称 2.变量初始值 3.变量特定标记位) 注：变量特定标记位不可为undefined
 
 	setVar函数：变量赋值  params(1.变量名称 2.变量值 3.变量特定标记位) 注：变量特定标记位不可为undefined
 
@@ -31,10 +31,14 @@
 var watchVarChange = function () {
     this.varCollect = {}
 
-    this.listen = function (name, value) {
+    this.listen = function (name, value, mark) {
         this.varCollect[name] = {
         	varHistList: value === undefined ? [] : [value]
         }
+
+        if (mark !== undefined) {
+    		this.varCollect[name][mark] = value
+    	}
     }
 
     this.setVar = function (name, value, mark) {
