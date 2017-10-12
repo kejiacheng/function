@@ -16,7 +16,7 @@
 			watch = new watchVarChange(),
 			ke
 
-		watch.listen('ke', '1')
+		ke = watch.listen('ke', '1')
 
 		ke = watch.setVar('ke', '123')
 
@@ -39,6 +39,8 @@ var watchVarChange = function () {
         if (mark !== undefined) {
     		this.varCollect[name][mark] = value
     	}
+
+    	return value
     }
 
     this.setVar = function (name, value, mark) {
